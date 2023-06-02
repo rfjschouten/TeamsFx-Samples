@@ -12,8 +12,8 @@ class WhosNextConfig extends React.Component {
         await pages.config.setConfig({
           suggestedDisplayName: "Who's next?",
           entityId: "WhosNext",
-          contentUrl: baseUrl + "/index.html#/tab",
-          websiteUrl: baseUrl + "/index.html#/tab",
+          contentUrl: baseUrl + "/index.html#/tab?inTeams=true",
+          websiteUrl: baseUrl + "/index.html#/tab?inTeams=true",
         });
         saveEvent.notifySuccess();
       });

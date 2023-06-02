@@ -4,6 +4,7 @@ import Privacy from "./Privacy";
 import TermsOfUse from "./TermsOfUse";
 import Tab from "./WhosNext";
 import WhosNextConfig from "./WhosNextConfig";
+import { LiveCanvasPage } from "./LiveCanvasPage";
 import "./App.css";
 
 /**
@@ -14,6 +15,7 @@ export default function App() {
   return (
     <Router>
       <Routes>
+        <Route exact path={"/"} element={<LiveCanvasPage />} />
         <Route path="/privacy" element={<Privacy />} />
         <Route path="/termsofuse" element={<TermsOfUse />} />
         <Route path="/tab" element={<Tab />} />

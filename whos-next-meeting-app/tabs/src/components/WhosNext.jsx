@@ -3,6 +3,8 @@ import { app, FrameContexts } from "@microsoft/teams-js";
 
 import "./WhosNext.scss";
 import FluidService from "../services/fluidLiveShare.js";
+import { meeting } from "@microsoft/teams-js";
+import { inTeams } from "../utils/inTeams.js";
 
 class WhosNextTab extends React.Component {
   constructor(props) {
@@ -81,6 +83,18 @@ class WhosNextTab extends React.Component {
     }
   };
 
+  shareToStage = () => {
+    if (inTeams()) {
+      meeting.shareAppContentToStage((error, result) => {
+        if (!error) {
+          console.log("Started sharing to stage");
+        } else {
+          console.warn("shareAppContentToStage failed", error);
+        }
+      }, window.location.origin + "?inTeams=1&view=stage");
+    }
+  };
+
   render() {
     const { ready, addedName, message, people, userName } = this.state;
 
@@ -93,7 +107,7 @@ class WhosNextTab extends React.Component {
           <br />
 
           {/* Message */}
-          <div class="message">{message}</div>
+          <div className="message">{message}</div>
         </div>
       );
     } else {
@@ -133,7 +147,7 @@ class WhosNextTab extends React.Component {
             >
               +
             </button>
-            <div class="message">{message}</div>
+            <div className="message">{message}</div>
             <hr />
           </div>
 
@@ -189,6 +203,9 @@ class WhosNextTab extends React.Component {
               Shuffle
             </button>
           </div>
+          <p>
+            <button onClick={() => this.shareToStage()}>Share To Stage</button>
+          </p>
         </div>
       );
     }
