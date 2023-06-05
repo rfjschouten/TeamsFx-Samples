@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 //import { useLiveCanvas } from "../utils/useLiveCanvas";
 import FluidService from "../services/fluidLiveShare.js";
 import { app } from "@microsoft/teams-js";
+import "./DiscussPatientsPage.scss";
 
 export const DiscussPatientsPage = () => {
   const [people, setPeople] = useState([]);
@@ -26,12 +27,12 @@ export const DiscussPatientsPage = () => {
       <div>
         {people && people.length > 0 &&
           <>
-            <h1>Discuss Patient {people[0].name}</h1>
+            <h1>Discuss Patient list for {people[0].name}</h1>
             {people[0].patients.map((patient) => {
               return (
-                <div>
-                  <div key={patient.name}>{patient.name}</div>
-                  <div key={patient.status}>{patient.status}</div>
+                <div className={`patientcard ${patient.status.replace(' ', '-')}`}>
+                  <div className="name" key={patient.name}>{patient.name}</div>
+                  <div className="status" key={patient.status}>{patient.status}</div>
                 </div>
               )
             })}
