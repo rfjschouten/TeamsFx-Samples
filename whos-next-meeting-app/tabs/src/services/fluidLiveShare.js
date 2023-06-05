@@ -47,9 +47,10 @@ class FluidService {
           initialObjects: { personMap: SharedMap, liveCanvas: LiveCanvas }
         });
       this.#container = container;
+      let initialList = require("../models/DiscussionList.json");
 
-      const json = this.#container.initialObjects.personMap.get(this.#PERSON_VALUE_KEY) || "[]";
-      this.#people = JSON.parse(json);
+      const json = this.#container.initialObjects.personMap.get(this.#PERSON_VALUE_KEY) || JSON.stringify(initialList);
+      this.#people = JSON.parse(JSON.stringify(initialList));
 
       // Register a function to update the app when data in the Fluid Relay changes
       this.#container.initialObjects.personMap.on("valueChanged", async () => {
@@ -93,7 +94,9 @@ class FluidService {
   }
 
   nextPerson = async () => {
+    const firstPerson = this.#people[0];
     this.#people.shift();
+    this.#people.push(firstPerson);
     await this.#updateFluid();
   }
 

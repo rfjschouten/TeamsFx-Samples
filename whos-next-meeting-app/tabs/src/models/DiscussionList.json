@@ -1,0 +1,37 @@
+[
+  {
+    "name": "Alice Cooper",
+    "patients": [
+      {
+        "name": "Leah Smith",
+        "status": "New"
+      },
+      {
+        "name": "John Doe",
+        "status": "New"
+      },
+      {
+        "name": "Tessa Smith",
+        "status": "In progress"
+      }
+    ]
+  },
+  {
+    "name": "Bob German",
+    "patients": [
+      {
+        "name": "John Doe",
+        "status": "New"
+      }
+    ]
+  },
+  {
+    "name": "Charlene Dior",
+    "patients": [
+      {
+        "name": "Tessa Smith",
+        "status": "In progress"
+      }
+    ]
+  }
+]

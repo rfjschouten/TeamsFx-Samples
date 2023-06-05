@@ -121,12 +121,12 @@ class WhosNextTab extends React.Component {
           {people.length > 0 && (
             <div className="speaker-box">
               <h2>Now speaking:</h2>
-              <h1 className="reveal-text">{people[0]}</h1>
+              <h1 className="reveal-text">{people[0].name}</h1>
             </div>
           )}
 
           {/* Input box w/title and button */}
-          <h2>Add your name to the list to speak</h2>
+          {/* <h2>Add your name to the list to speak</h2>
           <div className="add-name">
             <input
               type="text"
@@ -149,7 +149,7 @@ class WhosNextTab extends React.Component {
             </button>
             <div className="message">{message}</div>
             <hr />
-          </div>
+          </div> */}
 
           {/* List heading */}
           <div className="display-list">
@@ -165,7 +165,7 @@ class WhosNextTab extends React.Component {
                   {/* List of people waiting to speak  */}
                   {people.slice(1).map((item, index) => (
                     <li key={index} className="list-item">
-                      {item}
+                      {item.name}
                       <div
                         className="close"
                         onClick={async () => {
