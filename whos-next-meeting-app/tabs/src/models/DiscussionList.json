@@ -1,17 +1,22 @@
 [
   {
     "name": "Alice Cooper",
+    "jobTitle": "Doctor",
+    "Hospital": "St. Mary's",
     "patients": [
       {
         "name": "Leah Smith",
+        "comments": "Patient is doing well",
         "status": "New"
       },
       {
         "name": "John Doe",
+        "comments": "Patient is doing well",
         "status": "New"
       },
       {
         "name": "Tessa Smith",
+        "comments": "Patient is doing well",
         "status": "In progress"
       }
     ]

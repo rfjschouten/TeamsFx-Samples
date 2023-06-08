@@ -1,4 +1,4 @@
-import { LiveShareClient } from "@microsoft/live-share";
+import { LiveShareClient, LivePresence } from "@microsoft/live-share";
 import { LiveShareHost } from "@microsoft/teams-js";
 import { SharedMap } from "fluid-framework";
 import { LiveCanvas } from "@microsoft/live-share-canvas";
@@ -44,13 +44,13 @@ class FluidService {
       const { container } = await liveShareClient.joinContainer(
         // Container schema
         {
-          initialObjects: { personMap: SharedMap, liveCanvas: LiveCanvas }
+          initialObjects: { personMap: SharedMap, presence: LivePresence, liveCanvas: LiveCanvas }
         });
       this.#container = container;
       let initialList = require("../models/DiscussionList.json");
 
       const json = this.#container.initialObjects.personMap.get(this.#PERSON_VALUE_KEY) || JSON.stringify(initialList);
-      this.#people = JSON.parse(JSON.stringify(initialList));
+      this.#people = JSON.parse(json);
 
       // Register a function to update the app when data in the Fluid Relay changes
       this.#container.initialObjects.personMap.on("valueChanged", async () => {
@@ -115,6 +115,11 @@ class FluidService {
 
   getCanvas = async () => {
     return this.#container.initialObjects.liveCanvas;
+  }
+
+  getPresence = async () => {
+    return this.#container.initialObjects.presence;
+
   }
 
   onNewData = (e) => {
